@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-1: #fb923c;
+  --brand-2: #f43f5e;
+}
+
+/* small utility used in components */
+.glass {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(6px);
+}
+
+/* hero overlay bloom */
+.hero-bloom {
+  filter: blur(32px) saturate(1.1);
+  opacity: 0.16;
+}
