@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { SAMPLE_BIKES } from '../data/sampleData'
 import { useNavigate } from 'react-router-dom'
+import { allBikes } from "../data/bikes";
 
 export default function FeaturedBikes() {
   const [index, setIndex] = useState(0)
-  const items = SAMPLE_BIKES.slice(0,8)
+  const items = allBikes.slice(0,8)
   const navigate = useNavigate()
   useEffect(()=>{
     const t = setInterval(()=> setIndex(v=> (v+1)%items.length), 3000)

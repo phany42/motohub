@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react'
-import { SAMPLE_BIKES } from '../data/sampleData'
 import { useNavigate } from 'react-router-dom'
+import { allBikes } from "../data/bikes";
 
 export default function GlobalSearch() {
   const [q, setQ] = useState('')
@@ -8,7 +8,7 @@ export default function GlobalSearch() {
   const results = useMemo(() => {
     const term = q.toLowerCase().trim()
     if (!term) return []
-    return SAMPLE_BIKES.filter(b => b.name.toLowerCase().includes(term)).slice(0,6)
+    return allBikes.filter(b => b.name.toLowerCase().includes(term)).slice(0,6)
   }, [q])
 
   return (

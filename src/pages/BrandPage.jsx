@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { BRANDS, SAMPLE_BIKES } from '../data/sampleData'
+import { BRANDS, SAMPLE_BIKES } from '../data/bikes'
+import { brands, allBikes } from "../data/bikes";
 
 export default function BrandPage(){
   const { slug } = useParams()

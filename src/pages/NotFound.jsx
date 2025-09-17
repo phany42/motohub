@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
+import { brands, allBikes } from "../data/bikes";
 
-export default function NotFound(){
-  useEffect(()=>{ document.title = '404 — MotoHub' },[])
+export default function NotFound() {
   return (
-    <section className='flex flex-col items-center justify-center h-[60vh] text-white'>
-      <h1 className='text-6xl font-bold mb-4'>404</h1>
-      <p className='text-white/70 mb-6'>Page not found</p>
-      <Link to='/' className='px-4 py-2 rounded bg-orange-500 text-white'>Back to Home</Link>
-    </section>
-  )
+    <div className="min-h-screen bg-[#070707] text-white flex items-center justify-center">
+      <div className="text-center p-8">
+        <h1 className="text-7xl font-bold">404</h1>
+        <p className="mt-4 text-gray-400">Page not found</p>
+        <Link to="/" className="inline-block mt-6 bg-orange-600 px-4 py-2 rounded">Back to Home</Link>
+      </div>
+    </div>
+  );
 }

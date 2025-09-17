@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react'
-import { SAMPLE_BIKES, CITIES } from '../data/sampleData'
+import { SAMPLE_BIKES, CITIES } from '../data/bikes'
+import { brands, allBikes } from "../data/bikes";
 
 export default function PriceWidget() {
   const [city, setCity] = useState(CITIES[0])
