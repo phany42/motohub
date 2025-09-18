@@ -63,7 +63,8 @@ http://localhost:5173
 
 
 📸 Preview
-<img width="1365" height="617" alt="image" src="https://github.com/user-attachments/assets/1f3ed745-c9f8-410d-be5c-ab2180c72fa4" />
+<img width="1365" height="617" alt="motohub images ss" src="https://github.com/user-attachments/assets/812e85a2-4d70-4469-9192-62856dfc5a6b" />
+
 
 
 
