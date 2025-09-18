@@ -63,7 +63,8 @@ http://localhost:5173
 
 
 📸 Preview
-<img width="1351" height="605" alt="image" src="https://github.com/user-attachments/assets/626ae3a8-88ee-408c-b057-f9fb3c5f5da7" />
+<img width="1365" height="617" alt="image" src="https://github.com/user-attachments/assets/1f3ed745-c9f8-410d-be5c-ab2180c72fa4" />
+
 
 
 
