@@ -1,101 +1,123 @@
 
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import LoginModal from "./LoginModel"; 
+import { Link, useNavigate } from "react-router-dom";
+import LoginModel from "./LoginModel";
+import { brands } from "../data/bikes";
 
-export default function Navbar({ onSearch }) {
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
-  const [isBrowseOpen, setIsBrowseOpen] = useState(false);
+export default function Navbar() {
+  const [openLogin, setOpenLogin] = useState(false);
+  const [search, setSearch] = useState("");
+  const [browseOpen, setBrowseOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const q = search.trim();
+    if (!q) return;
+    navigate(`/browse?search=${encodeURIComponent(q)}`);
+    setSearch("");
+  };
 
   return (
-    <nav className="bg-gray-900 text-white px-6 py-4 flex items-center justify-between relative">
-      {/* Logo + tagline */}
-      <div className="flex items-center space-x-2">
-        <Link to="/" className="text-2xl font-bold">
-          Mh
-        </Link>
-        <span className="text-gray-400 hidden sm:block">
-          MotoHub | Compare, Browse & Explore Bikes
-        </span>
-      </div>
+    <>
+      <nav className="bg-gray-900 text-white border-b border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+           
+            <div className="flex items-center gap-6">
+              <Link to="/" className="text-lg font-bold">
+                Mh
+              </Link>
 
-      {/* Nav Links */}
-      <div className="flex space-x-6 relative">
-        <Link to="/" className="hover:text-gray-400">
-          Home
-        </Link>
-        <Link to="/brands" className="hover:text-gray-400">
-          Brands
-        </Link>
+              <span className="hidden sm:inline text-sm text-gray-300">
+                MotoHub | Compare, Browse & Explore Bikes
+              </span>
 
-        {/* Browse By Dropdown */}
-        <div
-          className="relative"
-          onMouseEnter={() => setIsBrowseOpen(true)}
-          onMouseLeave={() => setIsBrowseOpen(false)}
-        >
-          <button className="hover:text-gray-400">Browse By ▾</button>
-          {isBrowseOpen && (
-            <div className="absolute left-0 mt-2 w-40 bg-gray-800 rounded shadow-lg z-50">
-              <Link
-                to="/browseby/year"
-                className="block px-4 py-2 hover:bg-gray-700"
-              >
-                Year
-              </Link>
-              <Link
-                to="/browseby/type"
-                className="block px-4 py-2 hover:bg-gray-700"
-              >
-                Type
-              </Link>
-              <Link
-                to="/browseby/price"
-                className="block px-4 py-2 hover:bg-gray-700"
-              >
-                Price
-              </Link>
+              <div className="hidden md:flex items-center gap-4 ml-6">
+                <Link to="/" className="hover:underline">
+                  Home
+                </Link>
+
+                <Link to="/brands" className="hover:underline">
+                  Brands
+                </Link>
+
+                
+                <div
+                  className="relative"
+                  onMouseEnter={() => setBrowseOpen(true)}
+                  onMouseLeave={() => setBrowseOpen(false)}
+                >
+                  <button className="hover:underline">Browse By ▾</button>
+                  {browseOpen && (
+                    <div className="absolute left-0 mt-2 bg-gray-800 rounded shadow-lg p-2 min-w-[200px] z-30">
+                      <button
+                        onClick={() => navigate("/browse?tab=brand")}
+                        className="block w-full text-left px-3 py-2 hover:bg-gray-700 rounded"
+                      >
+                        Brand
+                      </button>
+                      <button
+                        onClick={() => navigate("/browse?tab=budget")}
+                        className="block w-full text-left px-3 py-2 hover:bg-gray-700 rounded"
+                      >
+                        Budget
+                      </button>
+                      <button
+                        onClick={() => navigate("/browse?tab=displacement")}
+                        className="block w-full text-left px-3 py-2 hover:bg-gray-700 rounded"
+                      >
+                        Displacement
+                      </button>
+                      <button
+                        onClick={() => navigate("/browse?tab=bodystyle")}
+                        className="block w-full text-left px-3 py-2 hover:bg-gray-700 rounded"
+                      >
+                        Body Style
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
-          )}
+
+            
+            <div className="flex items-center gap-3">
+              <form onSubmit={handleSearch} className="hidden sm:block">
+                <input
+                  type="text"
+                  placeholder="Search bikes..."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="px-3 py-1 rounded-md bg-gray-800 border border-gray-700 text-sm text-white focus:outline-none"
+                />
+              </form>
+
+              <Link to="/compare" className="text-sm px-3 py-1 rounded-md border border-gray-700 hover:bg-gray-800">
+                Compare
+              </Link>
+
+              
+              <button className="hidden sm:inline text-sm px-3 py-1 rounded-md border border-gray-700 hover:bg-gray-800">
+                Cart
+              </button>
+              <button className="hidden sm:inline text-sm px-3 py-1 rounded-md border border-gray-700 hover:bg-gray-800">
+                Saved
+              </button>
+
+              <button
+                onClick={() => setOpenLogin(true)}
+                className="text-sm px-3 py-1 rounded-md border bg-red-500 border-red-700 hover:bg-red-800"
+              >
+                Login
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
+      </nav>
 
-      {/* Search + Actions */}
-      <div className="flex items-center space-x-4">
-        <input
-          type="text"
-          placeholder="Search bikes..."
-          onChange={(e) => onSearch(e.target.value)}
-          className="px-3 py-1 rounded text-black"
-        />
-        <Link
-          to="/compare"
-          className="bg-blue-600 px-4 py-1 rounded hover:bg-blue-700"
-        >
-          Compare
-        </Link>
-        <Link
-          to="/cart"
-          className="bg-green-600 px-4 py-1 rounded hover:bg-green-700"
-        >
-          Cart
-        </Link>
-        <Link
-          to="/saved"
-          className="bg-yellow-500 px-4 py-1 rounded hover:bg-yellow-600"
-        >
-          Saved
-        </Link>
-        <button
-          onClick={() => setIsLoginOpen(true)}
-          className="bg-gray-700 px-4 py-1 rounded hover:bg-gray-800"
-        >
-          Login
-        </button>
-      </div>
-
-      {/* Login Modal */}
-      {isLoginOpen && <LoginModal onClose={() => setIsLoginOpen(false)} />}
-    </nav>
+      
+      <LoginModel open={openLogin} onClose={() => setOpenLogin(false)} />
+    </>
   );
 }

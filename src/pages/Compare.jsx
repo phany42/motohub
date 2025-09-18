@@ -32,7 +32,7 @@ export default function Compare() {
         <h1 className="text-2xl font-bold mb-6">Compare Bikes</h1>
 
         <div className="flex gap-6">
-          {/* Left sidebar - scrollable list of bikes for adding */}
+          
           <aside className="w-80 shrink-0">
             <div className="bg-gray-900 rounded-lg p-4 h-[70vh] overflow-y-auto sticky top-24">
               <div className="flex items-center justify-between mb-3">
@@ -63,7 +63,7 @@ export default function Compare() {
             </div>
           </aside>
 
-          {/* Main area */}
+          
           <main className="flex-1">
             {selectedBikes.length === 0 ? (
               <div className="h-[60vh] flex items-center justify-center">
@@ -81,7 +81,7 @@ export default function Compare() {
                   </div>
                 </div>
 
-                {/* Comparison cards - horizontal scroll if many */}
+                
                 <div className="flex gap-4 overflow-x-auto pb-4">
                   {selectedBikes.map((b) => (
                     <div key={b.slug} className="min-w-[260px] bg-gray-900 rounded-lg p-4">
@@ -99,7 +99,7 @@ export default function Compare() {
                   ))}
                 </div>
 
-                {/* Optional: comparison table keyed by attribute for easy visual comparison */}
+                
                 <div className="mt-6 overflow-auto bg-gray-900 rounded-lg p-4">
                   <table className="w-full table-fixed">
                     <thead>

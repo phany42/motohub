@@ -7,7 +7,6 @@ export default function BrowseTabs() {
   const [tab, setTab] = useState("Brand");
   const [filtered, setFiltered] = useState(null);
 
-  // Budget ranges
   const budgets = [
     { label: "Under ₹1 Lakh", max: 100000 },
     { label: "₹1 L – ₹2 L", min: 100000, max: 200000 },
@@ -15,7 +14,6 @@ export default function BrowseTabs() {
     { label: "Above ₹3 Lakh", min: 300000 },
   ];
 
-  // Displacement ranges
   const displacements = [
     { label: "Under 150cc", max: 150 },
     { label: "150cc – 250cc", min: 150, max: 250 },
@@ -23,10 +21,8 @@ export default function BrowseTabs() {
     { label: "Above 400cc", min: 400 },
   ];
 
-  // Body styles (extracted from all bikes)
   const bodyStyles = [...new Set(allBikes.map((b) => b.bodyStyle))];
 
-  // Function to filter bikes
   const filterBikes = (filterType, rangeOrStyle) => {
     let result = [];
     if (filterType === "Budget") {
@@ -52,14 +48,14 @@ export default function BrowseTabs() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-2xl font-bold">Browse Bikes By</h2>
 
-        {/* Tabs */}
+        
         <div className="mt-6 flex items-center gap-6 text-sm">
           {tabs.map((t) => (
             <button
               key={t}
               onClick={() => {
                 setTab(t);
-                setFiltered(null); // reset filtered list when switching tabs
+                setFiltered(null); 
               }}
               className={`pb-2 border-b-2 transition ${
                 tab === t
@@ -73,7 +69,7 @@ export default function BrowseTabs() {
         </div>
 
         <div className="mt-8">
-          {/* Brand Tab */}
+          
           {tab === "Brand" && !filtered && (
             <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
               {brands.map((b) => (
@@ -100,7 +96,7 @@ export default function BrowseTabs() {
             </div>
           )}
 
-          {/* Budget Tab */}
+          
           {tab === "Budget" && !filtered && (
             <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {budgets.map((range, i) => {
@@ -127,7 +123,7 @@ export default function BrowseTabs() {
             </div>
           )}
 
-          {/* Displacement Tab */}
+          
           {tab === "Displacement" && !filtered && (
             <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {displacements.map((range, i) => {
@@ -154,7 +150,7 @@ export default function BrowseTabs() {
             </div>
           )}
 
-          {/* Body Style Tab */}
+         
           {tab === "Body Style" && !filtered && (
             <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {bodyStyles.map((style) => {

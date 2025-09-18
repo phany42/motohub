@@ -6,7 +6,7 @@ export default function SidebarFilters({ selected, setSelected }) {
     <div className="w-64 bg-gray-100 p-4 border-r border-gray-300 h-screen sticky top-0">
       <h3 className="text-lg font-bold mb-4">Filters</h3>
 
-      {/* Year Filter */}
+      
       <div className="mb-4">
         <h4 className="font-semibold mb-2">Model Year</h4>
         {filterOptions.years.map((year) => (
@@ -23,7 +23,7 @@ export default function SidebarFilters({ selected, setSelected }) {
         ))}
       </div>
 
-      {/* Brand Filter */}
+      
       <div className="mb-4">
         <h4 className="font-semibold mb-2">Brand</h4>
         {filterOptions.brands.map((brand) => (
