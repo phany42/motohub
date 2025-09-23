@@ -11,7 +11,7 @@ import NotFound from "./pages/NotFound";
 
 export default function App() {
   return (
-    <BrowserRouter>
+   
       <div className="min-h-screen bg-[#0b0b0b]">
         <Navbar />
         <Routes>
@@ -23,6 +23,6 @@ export default function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
-    </BrowserRouter>
+  
   );
 }

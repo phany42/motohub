@@ -3,111 +3,100 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LoginModel from "./LoginModel";
 import { brands } from "../data/bikes";
+import { useCart } from "../context/CartContext";
+
 
 export default function Navbar() {
   const [openLogin, setOpenLogin] = useState(false);
   const [search, setSearch] = useState("");
-  const [browseOpen, setBrowseOpen] = useState(false);
+  const [searchError, setSearchError] = useState("");
+  const [placeholder, setPlaceholder] = useState("Search bikes...");
   const navigate = useNavigate();
+  const { cart } = useCart();
 
   const handleSearch = (e) => {
-    e.preventDefault();
-    const q = search.trim();
-    if (!q) return;
-    navigate(`/browse?search=${encodeURIComponent(q)}`);
+    e?.preventDefault?.();
+    const q = (search || "").trim().toLowerCase();
+    if (!q) {
+      return;
+    }
+
+    // match brand by name or slug (case-insensitive)
+    const found = brands.find(
+      (b) =>
+        b.name.toLowerCase() === q ||
+        b.slug.toLowerCase() === q ||
+        b.name.toLowerCase().includes(q) // allow exact/close matches
+    );
+
+    if (found) {
+      setSearch("");
+      setSearchError("");
+      setPlaceholder("Search bikes...");
+      navigate(`/brands/${found.slug}`);
+      return;
+    }
+
+    // not a brand -> show inline error inside the input (red placeholder & small message)
     setSearch("");
+    setSearchError("Brand not found");
+    setPlaceholder("Brand not found");
+    // remove error state after 2.5s
+    setTimeout(() => {
+      setSearchError("");
+      setPlaceholder("Search bikes...");
+    }, 2500);
   };
 
   return (
     <>
-      <nav className="bg-gray-900 text-white border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-           
-            <div className="flex items-center gap-6">
-              <Link to="/" className="text-lg font-bold">
-                Mh
-              </Link>
-
-              <span className="hidden sm:inline text-sm text-gray-300">
-                MotoHub | Compare, Browse & Explore Bikes
-              </span>
-
-              <div className="hidden md:flex items-center gap-4 ml-6">
-                <Link to="/" className="hover:underline">
-                  Home
-                </Link>
-
-                <Link to="/brands" className="hover:underline">
-                  Brands
-                </Link>
-
-                
-                <div
-                  className="relative"
-                  onMouseEnter={() => setBrowseOpen(true)}
-                  onMouseLeave={() => setBrowseOpen(false)}
-                >
-                  <button className="hover:underline">Browse By ▾</button>
-                  {browseOpen && (
-                    <div className="absolute left-0 mt-2 bg-gray-800 rounded shadow-lg p-2 min-w-[200px] z-30">
-                      <button
-                        onClick={() => navigate("/browse?tab=brand")}
-                        className="block w-full text-left px-3 py-2 hover:bg-gray-700 rounded"
-                      >
-                        Brand
-                      </button>
-                      <button
-                        onClick={() => navigate("/browse?tab=budget")}
-                        className="block w-full text-left px-3 py-2 hover:bg-gray-700 rounded"
-                      >
-                        Budget
-                      </button>
-                      <button
-                        onClick={() => navigate("/browse?tab=displacement")}
-                        className="block w-full text-left px-3 py-2 hover:bg-gray-700 rounded"
-                      >
-                        Displacement
-                      </button>
-                      <button
-                        onClick={() => navigate("/browse?tab=bodystyle")}
-                        className="block w-full text-left px-3 py-2 hover:bg-gray-700 rounded"
-                      >
-                        Body Style
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </div>
+      <nav className="bg-[#06101a] text-white border-b border-black/20">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex items-center gap-6 h-14">
+            <div className="flex items-center gap-4">
+              <Link to="/" className="font-semibold text-lg">Mh</Link>
+              <Link to="/" className="text-sm text-white/90">MotoHub</Link>
+              <Link to="/" className="text-sm text-white/70">Home</Link>
+              <Link to="/brands" className="text-sm text-white/70">Brands</Link>
+             
             </div>
 
-            
-            <div className="flex items-center gap-3">
-              <form onSubmit={handleSearch} className="hidden sm:block">
-                <input
-                  type="text"
-                  placeholder="Search bikes..."
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  className="px-3 py-1 rounded-md bg-gray-800 border border-gray-700 text-sm text-white focus:outline-none"
-                />
-              </form>
+            {/* Search form */}
+            <form onSubmit={handleSearch} className="flex-1">
+              <div className="max-w-md mx-auto">
+                <div className="relative">
+                  <input
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    placeholder={placeholder}
+                    className={`w-full rounded-md px-3 py-2 bg-[#0b1013] border ${
+                      searchError ? "border-rose-500 search-error" : "border-neutral-700"
+                    } outline-none text-white placeholder:text-neutral-400`}
+                    aria-label="Search brands"
+                  />
+                  <button
+                    type="submit"
+                    className="absolute right-1 top-1/2 -translate-y-1/2 px-3 py-1 rounded-md bg-neutral-800 text-sm"
+                  >
+                    Search
+                  </button>
+                </div>
+                {/* small inline message below input when brand not found */}
+                {searchError && (
+                  <div className="mt-1 text-rose-400 text-sm">{searchError}</div>
+                )}
+              </div>
+            </form>
 
-              <Link to="/compare" className="text-sm px-3 py-1 rounded-md border border-gray-700 hover:bg-gray-800">
-                Compare
-              </Link>
-
-              
-              <button className="hidden sm:inline text-sm px-3 py-1 rounded-md border border-gray-700 hover:bg-gray-800">
-                Cart
-              </button>
-              <button className="hidden sm:inline text-sm px-3 py-1 rounded-md border border-gray-700 hover:bg-gray-800">
-                Saved
-              </button>
+            {/* Right side buttons */}
+            <div className="ml-auto flex items-center gap-3">
+              <Link to="/compare" className="text-sm px-3 py-1 rounded-md border">Compare</Link>
+              <Link to="/cart" className="text-sm px-3 py-1 rounded-md border">Cart ({cart.length})</Link>
+              <Link to="/saved" className="text-sm px-3 py-1 rounded-md border">Saved</Link>
 
               <button
                 onClick={() => setOpenLogin(true)}
-                className="text-sm px-3 py-1 rounded-md border bg-red-500 border-red-700 hover:bg-red-800"
+                className="text-sm px-3 py-1 rounded-md bg-rose-600 hover:bg-rose-500"
               >
                 Login
               </button>
@@ -116,7 +105,6 @@ export default function Navbar() {
         </div>
       </nav>
 
-      
       <LoginModel open={openLogin} onClose={() => setOpenLogin(false)} />
     </>
   );
