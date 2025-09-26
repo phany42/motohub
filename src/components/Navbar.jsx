@@ -5,28 +5,24 @@ import LoginModel from "./LoginModel";
 import { brands } from "../data/bikes";
 import { useCart } from "../context/CartContext";
 
-
 export default function Navbar() {
   const [openLogin, setOpenLogin] = useState(false);
   const [search, setSearch] = useState("");
   const [searchError, setSearchError] = useState("");
   const [placeholder, setPlaceholder] = useState("Search bikes...");
   const navigate = useNavigate();
-  const { cart } = useCart();
+  const { cart, saved } = useCart();
 
   const handleSearch = (e) => {
     e?.preventDefault?.();
     const q = (search || "").trim().toLowerCase();
-    if (!q) {
-      return;
-    }
+    if (!q) return;
 
-    // match brand by name or slug (case-insensitive)
     const found = brands.find(
       (b) =>
         b.name.toLowerCase() === q ||
         b.slug.toLowerCase() === q ||
-        b.name.toLowerCase().includes(q) // allow exact/close matches
+        b.name.toLowerCase().includes(q)
     );
 
     if (found) {
@@ -37,11 +33,9 @@ export default function Navbar() {
       return;
     }
 
-    // not a brand -> show inline error inside the input (red placeholder & small message)
     setSearch("");
     setSearchError("Brand not found");
     setPlaceholder("Brand not found");
-    // remove error state after 2.5s
     setTimeout(() => {
       setSearchError("");
       setPlaceholder("Search bikes...");
@@ -58,10 +52,12 @@ export default function Navbar() {
               <Link to="/" className="text-sm text-white/90">MotoHub</Link>
               <Link to="/" className="text-sm text-white/70">Home</Link>
               <Link to="/brands" className="text-sm text-white/70">Brands</Link>
+              <Link to="/browseby" className="text-sm text-white/70">Browse By</Link>
+              <Link to="/news" className="text-sm text-white/70">News</Link>
              
+
             </div>
 
-            {/* Search form */}
             <form onSubmit={handleSearch} className="flex-1">
               <div className="max-w-md mx-auto">
                 <div className="relative">
@@ -70,36 +66,22 @@ export default function Navbar() {
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder={placeholder}
                     className={`w-full rounded-md px-3 py-2 bg-[#0b1013] border ${
-                      searchError ? "border-rose-500 search-error" : "border-neutral-700"
+                      searchError ? "border-rose-500" : "border-neutral-700"
                     } outline-none text-white placeholder:text-neutral-400`}
-                    aria-label="Search brands"
                   />
-                  <button
-                    type="submit"
-                    className="absolute right-1 top-1/2 -translate-y-1/2 px-3 py-1 rounded-md bg-neutral-800 text-sm"
-                  >
+                  <button type="submit" className="absolute right-1 top-1/2 -translate-y-1/2 px-3 py-1 rounded-md bg-neutral-800 text-sm">
                     Search
                   </button>
                 </div>
-                {/* small inline message below input when brand not found */}
-                {searchError && (
-                  <div className="mt-1 text-rose-400 text-sm">{searchError}</div>
-                )}
+                {searchError && <div className="mt-1 text-rose-400 text-sm">{searchError}</div>}
               </div>
             </form>
 
-            {/* Right side buttons */}
             <div className="ml-auto flex items-center gap-3">
               <Link to="/compare" className="text-sm px-3 py-1 rounded-md border">Compare</Link>
               <Link to="/cart" className="text-sm px-3 py-1 rounded-md border">Cart ({cart.length})</Link>
-              <Link to="/saved" className="text-sm px-3 py-1 rounded-md border">Saved</Link>
-
-              <button
-                onClick={() => setOpenLogin(true)}
-                className="text-sm px-3 py-1 rounded-md bg-rose-600 hover:bg-rose-500"
-              >
-                Login
-              </button>
+              <Link to="/saved" className="text-sm px-3 py-1 rounded-md border">Saved ({saved.length})</Link>
+              <button onClick={() => setOpenLogin(true)} className="text-sm px-3 py-1 rounded-md bg-rose-600 hover:bg-rose-500">Login</button>
             </div>
           </div>
         </div>

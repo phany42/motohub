@@ -1,11 +1,16 @@
 
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-import { brands, allBikes } from "../data/bikes";
+import { brands } from "../data/bikes";
+import { useCart } from "../context/CartContext";
+import { useAlert } from "../context/AlertContext";
 
 export default function BrandDetails() {
   const { brandSlug } = useParams();
   const brand = brands.find(b => b.slug === brandSlug);
+  const { addToCart, saveForLater } = useCart();
+  const { showAlert } = useAlert();
+
   if (!brand) {
     return (
       <div className="min-h-screen bg-[#0b0b0b] text-white flex items-center justify-center">
@@ -19,17 +24,17 @@ export default function BrandDetails() {
 
   const addToCompare = (bike) => {
     const stored = JSON.parse(localStorage.getItem("mh_compare") || "[]");
-    const exists = stored.find(s => s.slug === bike.slug && s.brand === brand.name);
+    const exists = stored.find(s => s.slug === bike.slug);
     if (!exists) {
       if (stored.length >= 3) {
-        alert("You can compare up to 3 bikes. Remove one from compare first.");
+        showAlert("You can compare up to 3 bikes.", "error");
         return;
       }
       stored.push({ ...bike, brand: brand.name, brandSlug: brand.slug });
       localStorage.setItem("mh_compare", JSON.stringify(stored));
-      alert(`${bike.name} added to compare (UI-only).`);
+      showAlert(`${bike.name} added to compare.`, "success");
     } else {
-      alert("Bike already in compare.");
+      showAlert("Bike already in compare.", "info");
     }
   };
 
@@ -62,8 +67,9 @@ export default function BrandDetails() {
                 </div>
 
                 <div className="mt-4 flex gap-3">
-                  <button onClick={() => addToCompare(bike)} className="flex-1 bg-gray-800 px-3 py-2 rounded-md">Compare</button>
-                  <button className="flex-1 bg-orange-600 px-3 py-2 rounded-md">Get Offers</button>
+                  <button onClick={() => addToCompare(bike)} className="flex-1 bg-gray-800 px-1 py-1 rounded-md">Compare</button>
+                  <button onClick={() => addToCart(bike)} className="flex-1 bg-orange-600 px-1 py-1  rounded-md">Add to Cart</button>
+                  <button onClick={() => saveForLater(bike)} className="flex-1 bg-yellow-600 px-1 py-1 rounded-md">Save</button>
                 </div>
               </div>
             ))}

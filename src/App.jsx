@@ -8,6 +8,9 @@ import BrandDetails from "./pages/BrandDetails";
 import Compare from "./pages/Compare";
 import BrowseBy from "./pages/BrowseBy";
 import NotFound from "./pages/NotFound";
+import CartPage from "./pages/CartPage";
+import SavedPage from "./pages/SavedPage";
+import News from "./pages/News";
 
 export default function App() {
   return (
@@ -20,6 +23,9 @@ export default function App() {
           <Route path="/brands/:brandSlug" element={<BrandDetails />} />
           <Route path="/compare" element={<Compare />} />
           <Route path="/browse" element={<BrowseBy />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/saved" element={<SavedPage />} />
+          <Route path="/news" element={<News />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
