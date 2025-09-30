@@ -20,7 +20,7 @@ export default function News() {
         const res = await axios.get(
           `https://newsapi.org/v2/everything?q=motorcycle&language=en&sortBy=publishedAt&pageSize=50&apiKey=${apiKey}`
         );
-        if (res.data.articles && res.data.articles.length > 0) {
+        if (res.data.articles && res.data.articles.length> 0) {
           setArticles(res.data.articles);
         } else {
           setError("No news available at the moment.");

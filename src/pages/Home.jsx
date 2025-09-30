@@ -37,12 +37,27 @@ export default function Home() {
     setPage(1);
   }, [year, style, priceRange]);
 
-  return (
-    <div className="min-h-screen bg-[#0b0b0b] text-white">
-      <div className="max-w-7xl mx-auto px-4 py-8 flex gap-6">
+  return ( 
+     <div className="relative min-h-screen overflow-hidden">
+    {/* Background Video */}
+    <video
+      autoPlay
+      loop
+      muted
+      playsInline
+      className="absolute top-0 left-0 w-full h-full object-cover -z-10"
+    >
+      
+      <source src="https://cdn.pixabay.com/video/2020/08/30/48569-454825064_tiny.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    {/* Overlay (to make text visible) */}
+    <div className="absolute inset-0 bg-black/60 -z-10"></div>
+      <div className="max-w-7x1 mx-auto px-4 py-8 flex gap-6">
         {/* Sidebar */}
         <aside className="hidden lg:block w-64">
-          <div className="bg-gray-900 rounded-lg p-4 h-[80vh] overflow-y-auto sticky top-20">
+          <div className="bg-black/60 rounded-lg p-4 h-[80vh] overflow-y-auto sticky top-20">
             <h3 className="text-lg font-semibold mb-4">Popular Brands</h3>
             <div className="space-y-3">
               {brands.map((b) => (
@@ -131,7 +146,7 @@ export default function Home() {
                 >
                   <article
                     className="bg-gray-900 rounded-lg p-4 h-full flex flex-col
-                               transform transition duration-300 hover:scale-105 hover:shadow-lg hover:shadow-orange-600/30"
+                               transform transition duration-300 hover:scale-105 hover:bg-gray-800 hover:shadow-lg hover:shadow-orange-600/30"
                   >
                     <div className="w-full h-40 bg-gray-800 rounded overflow-hidden mb-3 flex items-center justify-center">
                       <img
@@ -174,6 +189,7 @@ export default function Home() {
           </div>
         </main>
       </div>
+    
     </div>
   );
 }

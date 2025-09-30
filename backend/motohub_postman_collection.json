@@ -1,0 +1,101 @@
+{
+  "info": {
+    "name": "MotoHub API - Bikes",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "motohub-collection-001"
+  },
+  "item": [
+    {
+      "name": "GET - All Bikes",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/bikes",
+          "host": ["{{baseUrl}}"],
+          "path": ["api","bikes"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET - Bike by ID (1)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/bikes/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api","bikes","1"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": { "exec": ["pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"] }
+        }
+      ]
+    },
+    {
+      "name": "POST - Create Bike",
+      "request": {
+        "method": "POST",
+        "header": [{"key":"Content-Type","value":"application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\":\"Meteor 350\",\"brand\":\"Royal Enfield\",\"price\":210000,\"bodyStyle\":\"Cruiser\"}"
+        },
+        "url": { "raw": "{{baseUrl}}/api/bikes", "host": ["{{baseUrl}}"], "path": ["api","bikes"] }
+      }
+    },
+    {
+      "name": "PUT - Replace Bike (1)",
+      "request": {
+        "method": "PUT",
+        "header": [{"key":"Content-Type","value":"application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\":\"Hunter 350 - Replaced\",\"brand\":\"Royal Enfield\",\"price\":170000,\"bodyStyle\":\"Cruiser\"}"
+        },
+        "url": { "raw": "{{baseUrl}}/api/bikes/1", "host": ["{{baseUrl}}"], "path": ["api","bikes","1"] }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": { "exec": ["pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"] }
+        }
+      ]
+    },
+    {
+      "name": "PATCH - Partial Update (1)",
+      "request": {
+        "method": "PATCH",
+        "header": [{"key":"Content-Type","value":"application/json"}],
+        "body": { "mode":"raw", "raw":"{\"price\":175500}" },
+        "url": { "raw": "{{baseUrl}}/api/bikes/1", "host": ["{{baseUrl}}"], "path": ["api","bikes","1"] }
+      },
+      "event": [{ "listen":"test", "script": { "exec": ["pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"] } }]
+    },
+    {
+      "name": "DELETE - Delete Bike (replace id as needed)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": { "raw": "{{baseUrl}}/api/bikes/3", "host": ["{{baseUrl}}"], "path": ["api","bikes","3"] }
+      },
+      "event": [{ "listen":"test", "script": { "exec": ["pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"] } }]
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" }
+  ]
+}

@@ -14,8 +14,11 @@ import News from "./pages/News";
 
 export default function App() {
   return (
-   
-      <div className="min-h-screen bg-[#0b0b0b]">
+    <div
+      className="min-h-screen bg-cover bg-center"
+      style={{ backgroundImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-nE0xeJnYIPwDkRkbnOXBqSRvu9u0CK-cPw&s" }}
+    >
+     
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -28,6 +31,7 @@ export default function App() {
           <Route path="/news" element={<News />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+      
       </div>
   
   );

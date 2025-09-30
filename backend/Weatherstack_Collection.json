@@ -1,0 +1,149 @@
+{
+  "info": {
+    "_postman_id": "weatherstack-collection-001",
+    "name": "Weatherstack API Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Postman collection for Weatherstack API — includes multiple test scenarios, valid/invalid cases, and endpoint testing for current, forecast, and historical data."
+  },
+  "item": [
+    {
+      "name": "GET - Current Weather (Valid Query)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://api.weatherstack.com/current?access_key={{API_KEY}}&query=New Delhi",
+          "protocol": "http",
+          "host": ["api", "weatherstack", "com"],
+          "path": ["current"],
+          "query": [
+            { "key": "access_key", "value": "{{API_KEY}}" },
+            { "key": "query", "value": "New Delhi" }
+          ]
+        },
+        "description": "✅ Fetches current weather for New Delhi with a valid API key and query."
+      },
+      "response": []
+    },
+    {
+      "name": "GET - Current Weather (Invalid Key)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://api.weatherstack.com/current?access_key=INVALID_KEY&query=New Delhi",
+          "protocol": "http",
+          "host": ["api", "weatherstack", "com"],
+          "path": ["current"],
+          "query": [
+            { "key": "access_key", "value": "INVALID_KEY" },
+            { "key": "query", "value": "New Delhi" }
+          ]
+        },
+        "description": "❌ Tests behavior when an invalid API key is used. Expected output: `error.code = 101` (Invalid access key)."
+      },
+      "response": []
+    },
+    {
+      "name": "GET - Current Weather (Missing Query)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://api.weatherstack.com/current?access_key={{API_KEY}}",
+          "protocol": "http",
+          "host": ["api", "weatherstack", "com"],
+          "path": ["current"],
+          "query": [{ "key": "access_key", "value": "{{API_KEY}}" }]
+        },
+        "description": "❌ Tests missing query parameter. Expected output: `error.code = 601` (Missing query)."
+      },
+      "response": []
+    },
+    {
+      "name": "GET - Current Weather (Invalid Location)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://api.weatherstack.com/current?access_key={{API_KEY}}&query=abcdxyz",
+          "protocol": "http",
+          "host": ["api", "weatherstack", "com"],
+          "path": ["current"],
+          "query": [
+            { "key": "access_key", "value": "{{API_KEY}}" },
+            { "key": "query", "value": "abcdxyz" }
+          ]
+        },
+        "description": "❌ Tests invalid city name. Expected output: `error.code = 615` (No matching location found)."
+      },
+      "response": []
+    },
+    {
+      "name": "GET - Forecast Weather (Restricted Endpoint)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://api.weatherstack.com/forecast?access_key={{API_KEY}}&query=Hyderabad",
+          "protocol": "http",
+          "host": ["api", "weatherstack", "com"],
+          "path": ["forecast"],
+          "query": [
+            { "key": "access_key", "value": "{{API_KEY}}" },
+            { "key": "query", "value": "Hyderabad" }
+          ]
+        },
+        "description": "⚠️ This endpoint is restricted for free plans. Expected output: `error.code = 105` (Function access restricted)."
+      },
+      "response": []
+    },
+    {
+      "name": "GET - Historical Weather (Restricted Endpoint)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://api.weatherstack.com/historical?access_key={{API_KEY}}&query=Hyderabad&historical_date=2023-08-01",
+          "protocol": "http",
+          "host": ["api", "weatherstack", "com"],
+          "path": ["historical"],
+          "query": [
+            { "key": "access_key", "value": "{{API_KEY}}" },
+            { "key": "query", "value": "Hyderabad" },
+            { "key": "historical_date", "value": "2023-08-01" }
+          ]
+        },
+        "description": "⚠️ Restricted endpoint — included for documentation only. Expected output: `error.code = 105`."
+      },
+      "response": []
+    },
+    {
+      "name": "GET - Autocomplete (Restricted Endpoint)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://api.weatherstack.com/autocomplete?access_key={{API_KEY}}&query=London",
+          "protocol": "http",
+          "host": ["api", "weatherstack", "com"],
+          "path": ["autocomplete"],
+          "query": [
+            { "key": "access_key", "value": "{{API_KEY}}" },
+            { "key": "query", "value": "London" }
+          ]
+        },
+        "description": "⚠️ Not available for free users — expected output: `error.code = 105` (Function access restricted)."
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "API_KEY",
+      "value": "your_actual_weatherstack_api_key_here",
+      "type": "string"
+    }
+  ]
+}
+

@@ -33,8 +33,8 @@ export const brands = [
     name: "Yamaha",
     logo: "https://brandlogos.net/wp-content/uploads/2013/06/yamaha-company-vector-logo.png",
     bikes: [
-      { slug: "fz25", name: "FZ25", price: 160000, displacement: 249, bodyStyle: "Naked", year: 2020, image: "https://via.placeholder.com/600x360?text=FZ25" },
-      { slug: "r15", name: "R15", price: 170000, displacement: 155, bodyStyle: "Sports", year: 2024, image: "https://via.placeholder.com/600x360?text=R15" }
+      { slug: "fz25", name: "FZ25", price: 160000, displacement: 249, bodyStyle: "Naked", year: 2020, image: "https://production.autoforce.com/uploads/version/profile_image/11635/model_main_webp_comprar-racing-blue-azul-metalico_baab0ad8b1.png.webp" },
+      { slug: "r15", name: "R15", price: 170000, displacement: 155, bodyStyle: "Sports", year: 2024, image: "https://imgd.aeplcdn.com/1280x720/n/cw/ec/103795/r15-right-side-view-7.png?isig=0" }
     ]
   },
   {
@@ -42,7 +42,7 @@ export const brands = [
     name: "Suzuki",
     logo: "https://brandlogos.net/wp-content/uploads/2013/05/suzuki-eps-vector-logo.png",
     bikes: [
-      { slug: "gixxer-250", name: "Gixxer 250", price: 200000, displacement: 249, bodyStyle: "Naked", year: 2021, image: "https://via.placeholder.com/600x360?text=Gixxer+250" }
+      { slug: "gixxer-250", name: "Gixxer 250", price: 200000, displacement: 249, bodyStyle: "Naked", year: 2021, image: "https://imgd.aeplcdn.com/1056x594/n/cw/ec/195415/gixxer-250-right-side-view.jpeg?isig=0&q=80&wm=3" }
     ]
   },
   {
@@ -50,7 +50,7 @@ export const brands = [
     name: "Bajaj",
     logo: "https://brandlogos.net/wp-content/uploads/2025/03/bajaj_auto-logo_brandlogos.net_3n8by-768x485.png",
     bikes: [
-      { slug: "pulsar-n250", name: "Pulsar N250", price: 160000, displacement: 249, bodyStyle: "Naked", year: 2022, image: "https://via.placeholder.com/600x360?text=Pulsar+N250" }
+      { slug: "pulsar-n250", name: "Pulsar N250", price: 160000, displacement: 249, bodyStyle: "Naked", year: 2022, image: "https://cdn.bajajauto.com/en-np/-/media/globalbajajauto/common-media/features/pulsar/n250-dual-abs/nepal/n-250/heart.webp" }
     ]
   },
   {
