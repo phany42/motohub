@@ -23,7 +23,7 @@ This repo is configured to run frontend + backend on a single Render Web Service
 
 ## Local check before deploy
 ```bash
-npm --prefix frontend install
+npm --prefix frontend install --include=dev
 npm --prefix backend install
 npm --prefix frontend run build
 npm --prefix backend start
