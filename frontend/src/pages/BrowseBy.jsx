@@ -1,6 +1,5 @@
 ﻿import React, { useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight, SlidersHorizontal } from "lucide-react";
-import PageHero from "../components/common/PageHero";
 import SectionHeader from "../components/common/SectionHeader";
 import BikeCard from "../components/bikes/BikeCard";
 import EmptyState from "../components/common/EmptyState";
@@ -51,19 +50,12 @@ export default function BrowseBy() {
   }, [brandSlug, segment, budget, minCc, maxCc, search]);
 
   return (
-    <div className="space-y-10">
-      <PageHero
-        badge="Filter Lab"
-        title="Browse by Anything"
-        subtitle="Tune brand, segment, budget, and displacement ranges to find the right bike profile quickly."
-        image="https://picsum.photos/seed/motohub-browse-hero/1500/680"
-      />
-
+    <div className="space-y-8">
       <section className="rounded-3xl border border-slate-200/10 bg-slate-900/65 p-4 sm:p-6">
         <SectionHeader
-          eyebrow="Controls"
-          title="Advanced Filters"
-          subtitle="Use broad ranges first, then tighten for final shortlist."
+          eyebrow="Filter Lab"
+          title="Browse Bikes"
+          subtitle="Direct controls only. Hero banner removed to keep focus on filters and results."
         />
 
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
@@ -179,7 +171,7 @@ export default function BrowseBy() {
           />
         ) : (
           <>
-            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
               {currentItems.map((bike) => (
                 <BikeCard key={bike.slug} bike={bike} compact />
               ))}

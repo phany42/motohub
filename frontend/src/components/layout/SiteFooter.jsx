@@ -14,7 +14,7 @@ export default function SiteFooter() {
   return (
     <footer className="relative mt-16 overflow-hidden border-t border-slate-200/10 bg-slate-950/90">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,_rgba(14,165,233,0.16),_transparent_40%),radial-gradient(circle_at_top_left,_rgba(249,115,22,0.16),_transparent_40%)]" />
-      <div className="relative mx-auto grid w-full max-w-[1280px] gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.2fr_1fr_1fr] lg:px-8">
+      <div className="relative grid w-full gap-10 px-[clamp(0.85rem,2.2vw,2rem)] py-14 lg:grid-cols-[1.2fr_1fr_1fr]">
         <div>
           <p className="font-display text-2xl uppercase tracking-[0.2em] text-white">MotoHub</p>
           <p className="mt-3 max-w-md text-sm leading-relaxed text-slate-300">
@@ -51,7 +51,7 @@ export default function SiteFooter() {
         </div>
       </div>
 
-      <div className="relative border-t border-slate-200/10 px-4 py-4 text-center text-xs text-slate-400 sm:px-6 lg:px-8">
+      <div className="relative border-t border-slate-200/10 px-[clamp(0.85rem,2.2vw,2rem)] py-4 text-center text-xs text-slate-400">
         Copyright {new Date().getFullYear()} MotoHub. Built as a large-scale bike-first web experience.
       </div>
     </footer>

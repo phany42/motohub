@@ -32,6 +32,7 @@ export default function App() {
   return (
     <div className="site-shell min-h-screen">
       <SiteHeader />
+      <div className="header-separator" aria-hidden="true" />
       <main className="page-wrap">
         <Suspense fallback={<RouteLoaderOverlay open />}>
           <AnimatePresence mode="wait">

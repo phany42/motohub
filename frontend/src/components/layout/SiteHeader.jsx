@@ -32,7 +32,7 @@ function NavItem({ label, to, onClick }) {
       to={to}
       onClick={onClick}
       className={({ isActive }) =>
-        `bike-tap rounded-full px-3 py-1.5 text-sm transition ${
+        `bike-tap rounded-full px-2.5 py-1 text-sm transition ${
           isActive
             ? "bg-orange-500/85 text-white"
             : "text-slate-200/85 hover:bg-white/10 hover:text-white"
@@ -49,7 +49,7 @@ function MiniCounter({ label, to, value }) {
     <NavLink
       to={to}
       className={({ isActive }) =>
-        `bike-tap rounded-full border px-3 py-1 text-xs uppercase tracking-[0.08em] ${
+        `bike-tap rounded-full border px-2.5 py-0.5 text-xs uppercase tracking-[0.08em] ${
           isActive
             ? "border-cyan-300/45 bg-cyan-400/15 text-cyan-100"
             : "border-slate-200/15 text-slate-200/85 hover:border-slate-200/30 hover:text-white"
@@ -152,15 +152,15 @@ export default function SiteHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-[110] border-b border-slate-200/10 bg-slate-950/88 backdrop-blur-xl">
-      <div className="mx-auto flex w-full max-w-[1280px] items-center gap-2 px-4 py-2.5 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-[110] border-b border-slate-200/15 bg-gradient-to-r from-slate-950/98 via-slate-900/96 to-slate-950/98 shadow-[0_12px_28px_rgba(2,6,23,0.42)] backdrop-blur-xl">
+      <div className="flex w-full items-center gap-2 px-[clamp(0.85rem,2.2vw,2rem)] py-2">
         <Link to="/" className="flex items-center gap-2.5">
-          <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-orange-400 to-amber-600 text-slate-950 shadow-lg shadow-orange-700/30">
+          <span className="grid h-8 w-8 place-items-center rounded-xl bg-gradient-to-br from-orange-400 to-amber-600 text-slate-950 shadow-lg shadow-orange-700/30">
             <Bike className="h-4.5 w-4.5" />
           </span>
           <div>
-            <p className="font-display text-lg uppercase tracking-[0.2em] text-white">MotoHub</p>
-            <p className="text-[10px] uppercase tracking-[0.18em] text-cyan-100/70">Bike Data Universe</p>
+            <p className="font-display text-base uppercase tracking-[0.16em] text-white">MotoHub</p>
+            <p className="hidden text-[9px] uppercase tracking-[0.14em] text-cyan-100/70 2xl:block">Bike Data Universe</p>
           </div>
         </Link>
 
@@ -193,7 +193,7 @@ export default function SiteHeader() {
         </nav>
 
         <form onSubmit={handleSearchSubmit} className="relative ml-auto hidden w-[280px] lg:block 2xl:w-[320px]">
-          <div className="flex items-center gap-2 rounded-full border border-slate-200/15 bg-slate-900/80 px-3.5 py-2 text-sm">
+          <div className="flex items-center gap-2 rounded-full border border-slate-200/15 bg-slate-900/80 px-3.5 py-1.5 text-sm">
             <Search className="h-4 w-4 text-cyan-100/70" />
             <input
               value={searchValue}
