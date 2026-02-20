@@ -15,4 +15,4 @@ services:
       - key: DATA_DIR
         value: /tmp/motohub-data
       - key: CORS_ORIGINS
-        value: https://motohub-seven.vercel.app,https://motohub-git-main-phanys-projects-0457d5ec.vercel.app,https://motohub-j9e7vd00-phanys-projects-0457d5ec.vercel.app,https://motohub-*-phanys-projects-0457d5ec.vercel.app
+        value: https://motohub-ind.vercel.app,https://motohub-ind-git-main-phanys-projects-0457d5ec.vercel.app,https://motohub-bamczpg6p-phanys-projects-0457d5ec.vercel.app,https://motohub-*-phanys-projects-0457d5ec.vercel.app
