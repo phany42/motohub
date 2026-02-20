@@ -19,6 +19,7 @@ This repo is configured to run frontend + backend on a single Render Web Service
 ## Optional persistence for CMS data
 - Current JSON CMS storage is file-based in `backend/data`.
 - `DATA_DIR` is already set in `render.yaml`.
+- Current default `DATA_DIR` is `/tmp/motohub-data` (writable but ephemeral on restart).
 - For full persistence across redeploy/restart, attach a persistent disk and point `DATA_DIR` to disk mount path.
 
 ## Local check before deploy

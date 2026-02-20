@@ -13,6 +13,6 @@ services:
       - key: NODE_ENV
         value: production
       - key: DATA_DIR
-        value: /opt/render/project/src/backend/data
+        value: /tmp/motohub-data
       - key: CORS_ORIGINS
         value: https://motohub-seven.vercel.app,https://motohub-git-main-phanys-projects-0457d5ec.vercel.app,https://motohub-j9e7vd00-phanys-projects-0457d5ec.vercel.app,https://motohub-*-phanys-projects-0457d5ec.vercel.app
