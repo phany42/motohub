@@ -6,7 +6,7 @@ This repo is configured to run frontend + backend on a single Render Web Service
 - `render.yaml` blueprint at repo root
 - Express serves API on `/api/*` and built frontend from `frontend/dist/`
 - Frontend API base defaults to `/api`
-- Service plan set to `starter` in blueprint for always-on behavior (no sleep).
+- Service plan set to `free` in blueprint.
 
 ## Deploy steps (one-time in your Render account)
 1. Push this repo to GitHub.
