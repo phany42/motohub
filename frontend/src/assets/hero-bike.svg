@@ -1,0 +1,17 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 400'>
+  <defs>
+    <linearGradient id='g' x1='0' x2='1'>
+      <stop offset='0' stop-color='#111827'/>
+      <stop offset='1' stop-color='#0f172a'/>
+    </linearGradient>
+  </defs>
+  <rect width='1200' height='400' fill='url(#g)'/>
+  <g fill='#111827' opacity='0.05'>
+    <circle cx='200' cy='80' r='120'/>
+    <circle cx='960' cy='120' r='80'/>
+  </g>
+  <g transform='translate(60,40)' fill='none' stroke='#f97316' stroke-width='6' stroke-linecap='round'>
+    <path d='M120 200c60-40 150-120 240-120s190 80 260 120' opacity='0.25'/>
+  </g>
+  <text x='50%' y='60%' text-anchor='middle' fill='#ffffff' font-size='40' font-family='sans-serif' opacity='0.9'>MotoHub</text>
+</svg>

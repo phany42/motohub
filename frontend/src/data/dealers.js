@@ -1,0 +1,163 @@
+﻿export const dealers = [
+  {
+    id: "dealer-bengaluru-central",
+    name: "MotoHub Partner Studio Bengaluru Central",
+    city: "Bengaluru",
+    state: "Karnataka",
+    address: "12 Brigade Road, Ashok Nagar",
+    phone: "+91 80 4400 9001",
+    services: ["Sales", "Service", "Accessories", "Test Rides"],
+    brands: ["Royal Enfield", "KTM", "Yamaha", "Honda"],
+    opensAt: "09:30",
+    closesAt: "20:00",
+  },
+  {
+    id: "dealer-pune-west",
+    name: "MotoHub Partner Garage Pune West",
+    city: "Pune",
+    state: "Maharashtra",
+    address: "45 Baner High Street",
+    phone: "+91 20 7700 4512",
+    services: ["Sales", "Service", "Insurance"],
+    brands: ["Bajaj", "Triumph", "TVS"],
+    opensAt: "10:00",
+    closesAt: "19:30",
+  },
+  {
+    id: "dealer-delhi-connaught",
+    name: "MotoHub Premium Delhi Connaught",
+    city: "New Delhi",
+    state: "Delhi",
+    address: "8 Tolstoy Marg, Connaught Place",
+    phone: "+91 11 6200 1122",
+    services: ["Sales", "Service", "Finance", "Fast Service"],
+    brands: ["BMW Motorrad", "Ducati", "Kawasaki"],
+    opensAt: "10:00",
+    closesAt: "20:00",
+  },
+  {
+    id: "dealer-mumbai-south",
+    name: "MotoHub Coastal Mumbai South",
+    city: "Mumbai",
+    state: "Maharashtra",
+    address: "22 Worli Sea Face Road",
+    phone: "+91 22 3300 7003",
+    services: ["Sales", "Service", "Accessories"],
+    brands: ["Harley-Davidson", "Honda", "Suzuki"],
+    opensAt: "09:30",
+    closesAt: "20:30",
+  },
+  {
+    id: "dealer-chennai-track",
+    name: "MotoHub Trackline Chennai",
+    city: "Chennai",
+    state: "Tamil Nadu",
+    address: "101 OMR Service Lane",
+    phone: "+91 44 5111 0199",
+    services: ["Sales", "Performance Setup", "Track Support"],
+    brands: ["Yamaha", "KTM", "Kawasaki"],
+    opensAt: "09:00",
+    closesAt: "19:30",
+  },
+  {
+    id: "dealer-hyderabad-tech",
+    name: "MotoHub TechSquare Hyderabad",
+    city: "Hyderabad",
+    state: "Telangana",
+    address: "17 Hitech City Main Avenue",
+    phone: "+91 40 2929 1400",
+    services: ["Sales", "Service", "Software Updates"],
+    brands: ["TVS", "Hero", "Bajaj", "Yamaha"],
+    opensAt: "10:00",
+    closesAt: "20:00",
+  },
+  {
+    id: "dealer-ahmedabad-north",
+    name: "MotoHub Ahmedabad North",
+    city: "Ahmedabad",
+    state: "Gujarat",
+    address: "66 SG Highway, Thaltej",
+    phone: "+91 79 8001 4500",
+    services: ["Sales", "Service", "Extended Warranty"],
+    brands: ["Honda", "Suzuki", "Royal Enfield"],
+    opensAt: "09:30",
+    closesAt: "19:30",
+  },
+  {
+    id: "dealer-kochi-harbor",
+    name: "MotoHub Harbor Kochi",
+    city: "Kochi",
+    state: "Kerala",
+    address: "5 Marine Drive Link Road",
+    phone: "+91 48 4004 7281",
+    services: ["Sales", "Service", "Roadside Support"],
+    brands: ["Triumph", "BMW Motorrad", "Harley-Davidson"],
+    opensAt: "10:00",
+    closesAt: "19:00",
+  },
+  {
+    id: "dealer-lucknow-ringroad",
+    name: "MotoHub Ringroad Lucknow",
+    city: "Lucknow",
+    state: "Uttar Pradesh",
+    address: "88 Ring Road, Aliganj",
+    phone: "+91 52 2222 9100",
+    services: ["Sales", "Service", "Insurance"],
+    brands: ["Hero", "Bajaj", "TVS"],
+    opensAt: "09:30",
+    closesAt: "19:30",
+  },
+  {
+    id: "dealer-jaipur-classic",
+    name: "MotoHub Classic Jaipur",
+    city: "Jaipur",
+    state: "Rajasthan",
+    address: "40 MI Road, Pink City",
+    phone: "+91 14 4300 7751",
+    services: ["Sales", "Service", "Custom Builds"],
+    brands: ["Royal Enfield", "Triumph", "Harley-Davidson"],
+    opensAt: "09:00",
+    closesAt: "20:00",
+  },
+  {
+    id: "dealer-kolkata-riverside",
+    name: "MotoHub Riverside Kolkata",
+    city: "Kolkata",
+    state: "West Bengal",
+    address: "19 Prince Anwar Shah Connector",
+    phone: "+91 33 7000 8080",
+    services: ["Sales", "Service", "Fast Service"],
+    brands: ["Honda", "Yamaha", "Suzuki"],
+    opensAt: "10:00",
+    closesAt: "19:30",
+  },
+  {
+    id: "dealer-chandigarh-hills",
+    name: "MotoHub Hills Chandigarh",
+    city: "Chandigarh",
+    state: "Chandigarh",
+    address: "12 Sector 17 Plaza",
+    phone: "+91 17 2500 9191",
+    services: ["Sales", "Service", "Adventure Prep"],
+    brands: ["BMW Motorrad", "KTM", "Royal Enfield"],
+    opensAt: "09:30",
+    closesAt: "19:30",
+  },
+];
+
+export const dealerCities = Array.from(
+  new Set(dealers.map((dealer) => dealer.city))
+).sort((a, b) => a.localeCompare(b));
+
+export function searchDealers(query) {
+  const normalized = query.trim().toLowerCase();
+
+  if (!normalized) {
+    return dealers;
+  }
+
+  return dealers.filter((dealer) => {
+    const target = `${dealer.name} ${dealer.city} ${dealer.state} ${dealer.brands.join(" ")}`.toLowerCase();
+    return target.includes(normalized);
+  });
+}

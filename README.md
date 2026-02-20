@@ -1,90 +1,33 @@
-# Motohub 
+# MotoHub Monorepo
 
-A responsive web application built with **React + Vite + Tailwind CSS**.  
-This project showcases bikes, brands, and related content with a modern UI.
+This repository is now split into:
+- `frontend/` - React + Vite web app
+- `backend/` - Express API + JSON-based CMS data
 
----
-```
-##  Tech Stack
-- **React** (Frontend UI)
-- **Vite** (Bundler & Dev Server)
-- **Tailwind CSS** (Styling)
-- **PostCSS + Autoprefixer**
-- **JavaScript (ES6+)**
-```
----
-
-## 📂 Project Structure
-motohub_full/
-├── public/ # Static assets <br>
-├── src/ # Source code<br>
-│ ├── components/ # Reusable UI components<br>
-│ ├── pages/ # Page-level components<br>
-│ ├── data/ # Static or mock data<br>
-│ ├── App.jsx # Main App component<br>
-│ ├── main.jsx # Entry point<br>
-│ └── index.css # Global styles (Tailwind)<br>
-├── index.html # Root HTML file<br>
-├── tailwind.config.cjs # Tailwind configuration<br>
-├── postcss.config.cjs # PostCSS configuration<br>
-├── vite.config.js # Vite configuration<br>
-└── package.json # Dependencies & scripts<br>
-```
-yaml
-Copy code
-
----
-```
-
-
-## ⚡ Installation & Setup
-```
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/motohub_full.git
-   cd motohub_full
+## Local development
 
 Install dependencies:
 
-bash
-Copy code
+```bash
 npm install
-Run the development server:
+npm run install:all
+```
 
-bash
-Copy code
+Run frontend + backend together:
+
+```bash
 npm run dev
-Open your browser:
+```
 
-arduino
-Copy code
-http://localhost:5173
+Frontend: `http://localhost:5173`  
+Backend: `http://localhost:5000`
 
+## Environment files
 
-📸 Preview
-<img width="1351" height="605" alt="image" src="https://github.com/user-attachments/assets/626ae3a8-88ee-408c-b057-f9fb3c5f5da7" />
+- Frontend: copy `frontend/.env.example` and set `VITE_API_BASE_URL`
+- Backend: copy `backend/.env.example` and set `CORS_ORIGINS`, `DATA_DIR`, and other values
 
+## Deployment
 
-
-🛠 Features
-🔎 Global Search for bikes
-
-🏍️ Featured Bikes showcase
-
-📊 Brand-specific pages
-
-⭐ Favorites system
-
-📱 Fully responsive design
-
-
-
-📌 To Do
- Add more brand details
-
- Improve navbar design
-
- Enhance responsiveness for tablets
-
- Optimize images for faster load
+- Vercel frontend guide: `DEPLOY_VERCEL.md`
+- Render full-stack guide: `DEPLOY_RENDER.md`
